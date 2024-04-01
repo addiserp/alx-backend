@@ -8,8 +8,7 @@
 from typing import Tuple
 import csv
 import math
-from typing import List
-
+from typing import Dict, List, Tuple
 
 class Server:
     """Server class to paginate a database of popular baby names.
