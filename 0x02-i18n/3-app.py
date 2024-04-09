@@ -1,46 +1,43 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
     Starts a Flash-babel Web Application
 """
-
-from flask import Flask, render_template, request
 from flask_babel import Babel
+from flask import Flask, render_template, request
 
 
-class Config:
-    # ...
-    LANGUAGES = ['en', 'fr']
+class Config(object):
+    """
+    Babel Configuration setup
+    """
+    LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-def get_locale() -> str:
-    """
-    to determine the best match with our supported languages.
-
-    Returns:
-        str: best match
-    """
-
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def index() -> str:
     """
-        index start point for 0x02. i18n
+    home page index
     """
-
     return render_template('3-index.html')
 
 
-babel.init_app(app, locale_selector=get_locale)
+@babel.localeselector
+def get_locale():
+    """
+    the Babel extension in Flask for locale
+    """
+    locale = request.args.get('locale')
+    if locale in app.config['LANGUAGES']:
+        return locale
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
 if __name__ == "__main__":
-    """ Main Function """
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(port=5000, host="0.0.0.0", debug=True)
