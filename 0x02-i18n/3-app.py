@@ -10,7 +10,7 @@ from flask_babel import Babel
 class Config:
     # ...
     LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_LOCALE = "fr"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
@@ -32,12 +32,13 @@ def get_locale() -> str:
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """
         index start point for 0x02. i18n
     """
 
-    return render_template('2-index.html')
+    return render_template('3-index.html')
+
 
 babel.init_app(app, locale_selector=get_locale)
 if __name__ == "__main__":
