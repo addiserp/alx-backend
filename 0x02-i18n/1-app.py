@@ -26,7 +26,7 @@ def index():
         index start point for 0x02. i18n
     """
 
-    return render_template('index.html')
+    return render_template('1-index.html')
 
 
 if __name__ == "__main__":
