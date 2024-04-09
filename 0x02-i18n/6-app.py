@@ -54,7 +54,7 @@ def before_request() -> None:
 @babel.localeselector
 def get_locale() -> str:
     """
-    It retrieves the locale for a web page.
+    the Babel extension in Flask for locale
 
     Returns:
         str: best match
