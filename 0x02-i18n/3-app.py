@@ -28,7 +28,7 @@ def index() -> str:
     return render_template('3-index.html')
 
 
-@babel.locale_selector
+@babel.localeselector
 def get_locale():
     """
     the Babel extension in Flask for locale
