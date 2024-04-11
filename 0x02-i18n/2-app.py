@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
     Starts a Flash-babel Web Application
 """
@@ -20,6 +20,7 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
+@babel.locale_selector
 def get_locale() -> str:
     """
     to determine the best match with our supported languages.
@@ -39,7 +40,8 @@ def index():
 
     return render_template('2-index.html')
 
-babel.init_app(app, locale_selector=get_locale)
+
+# babel.init_app(app, locale_selector=get_locale)
 if __name__ == "__main__":
     """ Main Function """
     app.run(host='0.0.0.0', port=5000, debug=True)
