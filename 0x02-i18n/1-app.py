@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
     Starts a Flash-babel Web Application
 """
@@ -8,7 +8,9 @@ from flask_babel import Babel
 
 
 class Config:
-    # ...
+    """
+        Class config intialization
+    """
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
