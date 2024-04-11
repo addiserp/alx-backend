@@ -8,7 +8,9 @@ from flask_babel import Babel
 
 
 class Config:
-    # ...
+    """
+        Class config intialization
+    """
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -20,7 +22,7 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-@babel.locale_selector
+@babel.localeselector
 def get_locale() -> str:
     """
     to determine the best match with our supported languages.
